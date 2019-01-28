@@ -517,12 +517,13 @@ Use contextual classes to color table rows or individual cells.
         <td>Cell</td>
       </tr>
 
-      {% for color in site.data.theme-colors %}
-      <tr class="table-{{ color.name }}">
-        <th scope="row">{{ color.name | capitalize }}</th>
+      {{< table.inline >}}
+      {{- range (index $.Site.Data "theme-colors") }}
+      <tr class="table-{{ .name }}">
+        <th scope="row">{{ .name | title }}</th>
         <td>Cell</td>
         <td>Cell</td>
-      </tr>{% endfor %}
+      </tr>{{ end }}{{< /table.inline >}}
     </tbody>
   </table>
 </div>
@@ -530,14 +531,16 @@ Use contextual classes to color table rows or individual cells.
 {{< highlight html >}}
 <!-- On rows -->
 <tr class="table-active">...</tr>
-{% for color in site.data.theme-colors %}
-<tr class="table-{{ color.name }}">...</tr>{% endfor %}
+{{< table.inline >}}
+{{- range (index $.Site.Data "theme-colors") }}
+<tr class="table-{{ .name }}">...</tr>{{ end }}{{< /table.inline >}}
 
 <!-- On cells (`td` or `th`) -->
 <tr>
   <td class="table-active">...</td>
-  {% for color in site.data.theme-colors %}
-  <td class="table-{{ color.name }}">...</td>{% endfor %}
+  {{< table.inline >}}
+  {{- range (index $.Site.Data "theme-colors") }}
+  <td class="table-{{ .name }}">...</td>{{ end }}{{< /table.inline >}}
 </tr>
 {{< /highlight >}}
 

@@ -117,8 +117,9 @@ Use contextual classes to style list items with a stateful background and color.
 <ul class="list-group">
   <li class="list-group-item">Dapibus ac facilisis in</li>
 
-  {% for color in site.data.theme-colors %}
-  <li class="list-group-item list-group-item-{{ color.name }}">A simple {{ color.name }} list group item</li>{% endfor %}
+  {{< list.inline >}}
+  {{- range (index $.Site.Data "theme-colors") }}
+  <li class="list-group-item list-group-item-{{ .name }}">A simple {{ .name }} list group item</li>{{ end }}{{< /list.inline >}}
 </ul>
 {{< /example >}}
 
@@ -128,8 +129,9 @@ Contextual classes also work with `.list-group-item-action`. Note the addition o
 <div class="list-group">
   <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
 
-  {% for color in site.data.theme-colors %}
-  <a href="#" class="list-group-item list-group-item-action list-group-item-{{ color.name }}">A simple {{ color.name }} list group item</a>{% endfor %}
+  {{< list.inline >}}
+  {{- range (index $.Site.Data "theme-colors") }}
+  <a href="#" class="list-group-item list-group-item-action list-group-item-{{ .name }}">A simple {{ .name }} list group item</a>{{ end }}{{< /list.inline >}}
 </div>
 {{< /example >}}
 
