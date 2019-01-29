@@ -1,4 +1,11 @@
-{{ range $i, $entry := .Site.Data.examples }}
+---
+title: Examples
+description: Quickly get a project started with any of our examples ranging from using parts of the framework to custom components and layouts.
+aliases: "/examples/"
+---
+
+{{< list-examples.inline >}}
+{{- range $i, $entry := .Site.Data.examples }}
   <h2>{{ $entry.category }}</h2>
   <p>{{ $entry.description }}</p>
     {{ range $j, $example := $entry.examples }}
@@ -15,4 +22,5 @@
         </div>
       {{ if (eq (add $j 1) $len) }}</div>{{ end }}
     {{ end }}
-{{ end }}
+{{ end -}}
+{{< /list-examples.inline >}}
