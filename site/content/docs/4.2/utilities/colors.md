@@ -45,8 +45,13 @@ Similar to the contextual text color classes, easily set the background of an el
 
 When `$enable-gradients` is set to `true` (default is `false`), you can use `.bg-gradient-` utility classes. [Learn about our Sass options](/docs/{{< param docs_version >}}/getting-started/theming/#sass-options) to enable these classes and more.
 
-{% for color in site.data.theme-colors %}
-- `.bg-gradient-{{ color.name }}`{% endfor %}
+{{< colors.inline >}}
+<ul>
+{{- range (index $.Site.Data "theme-colors") }}
+  <li><code>.bg-gradient-{{ .name }}</code></li>
+{{ end -}}
+</ul>
+{{< /colors.inline >}}
 
 {{< callout info >}}
 #### Dealing with specificity
